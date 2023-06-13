@@ -1,0 +1,10 @@
+POST https://localhost:7020/api/users/login
+Content-Type application/json
+
+{
+  "email": "admin@localhost",
+  "password": "Numsey#2023"
+}
+
+###
+GET https://localhost:7020/api/categorias
