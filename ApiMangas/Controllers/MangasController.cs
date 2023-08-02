@@ -2,11 +2,13 @@
 using ApiMangas.Entities;
 using ApiMangas.Repositories.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiMangas.Controllers;
 
 [Route("api/[controller]")]
+[Authorize(AuthenticationSchemes = "Bearer")]
 [ApiController]
 public class MangasController : ControllerBase
 {
