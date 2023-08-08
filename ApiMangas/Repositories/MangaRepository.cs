@@ -12,6 +12,12 @@ public class MangaRepository : Repository<Manga>, IMangaRepository
     {
         return await _db.Mangas.Where(b => b.CategoriaId == categoriaId).ToListAsync();
     }
+
+    public IQueryable<Manga> GetMangasQueryable()
+    {
+        return _db.Mangas.AsQueryable();
+    }
+
     public async Task<IEnumerable<Manga>> LocalizaMangaComCategoriaAsync(string criterio)
     {
         return await _db.Mangas.AsNoTracking()
