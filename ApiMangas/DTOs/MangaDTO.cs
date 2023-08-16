@@ -70,8 +70,6 @@ public class MangaDTO
     [Required(ErrorMessage = "O estoque é obrigatório")]
     [Range(1, 999)]
     public int Estoque { get; set; }
-
-    [JsonIgnore]
     public Categoria? Categoria { get; set; }
 
     [DisplayName("Categorias")]

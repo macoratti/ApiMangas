@@ -10,7 +10,9 @@ public class MangaRepository : Repository<Manga>, IMangaRepository
     public MangaRepository(AppDbContext context) : base(context) { }
     public async Task<IEnumerable<Manga>> GetMangasPorCategoriaAsync(int categoriaId)
     {
-        return await _db.Mangas.Where(b => b.CategoriaId == categoriaId).ToListAsync();
+        var mangas = await _db.Mangas.Include(b => b.Categoria)
+                           .Where(b => b.CategoriaId == categoriaId).ToListAsync();
+        return mangas;
     }
 
     public IQueryable<Manga> GetMangasQueryable()

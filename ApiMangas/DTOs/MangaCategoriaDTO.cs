@@ -71,7 +71,7 @@ namespace ApiMangas.DTOs
         [Range(1, 999)]
         public int Estoque { get; set; }
 
-        //public Categoria? Categoria { get; set; }
+        public Categoria? Categoria { get; set; }
         public string? NomeCategoria { get; set; }
 
     }

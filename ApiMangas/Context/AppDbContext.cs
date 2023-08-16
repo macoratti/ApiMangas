@@ -24,6 +24,9 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Categoria>().
             Property(p => p.Nome).HasMaxLength(100).IsRequired();
 
+        builder.Entity<Categoria>().
+          Property(p => p.IconCSS).HasMaxLength(100).IsRequired();
+
         // 1 : N => Categoria : Mangas
         builder.Entity<Categoria>().HasMany(c => c.Mangas)
             .WithOne(b => b.Categoria)
@@ -31,12 +34,12 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
         //define os dados iniciais para a entidade Categoria
         builder.Entity<Categoria>().HasData(
-          new Categoria(1, "Aventura"),
-          new Categoria(2, "Ação"),
-          new Categoria(3, "Drama"),
-          new Categoria(4, "Romance"),
-          new Categoria(5, "Ficção")
-        );
+           new Categoria(1, "Aventura", "oi oi-aperture"),
+           new Categoria(2, "Ação", "oi oi-fire"),
+           new Categoria(3, "Drama", "oi oi-cloudy"),
+           new Categoria(4, "Romance", "oi oi-layers"),
+           new Categoria(5, "Ficção", "oi oi-tablet")
+         );
 
         builder.Entity<Manga>().HasKey(t => t.Id);
 
