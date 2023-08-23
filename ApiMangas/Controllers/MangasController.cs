@@ -52,7 +52,6 @@ public class MangasController : ControllerBase
         return Ok(response);
     }
 
-
     [HttpGet]
     // Atributos de ação que fornecem informações sobre os possíveis códigos de status HTTP
     // que podem ser retornados pelo endpoint da Web API.
@@ -139,14 +138,14 @@ public class MangasController : ControllerBase
     [Route("search/{mangaTitulo}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<List<MangaDTO>>> Search(string mangaTitulo)
+    public async Task<ActionResult<IEnumerable<MangaDTO>>> Search(string mangaTitulo)
     {
-        var mangas = await _mangaRepository.SearchAsync(m => m.Titulo.Contains(mangaTitulo));
+           var mangas = await _mangaRepository.SearchAsync(m => m.Titulo.Contains(mangaTitulo));
+           
+           if (mangas is null)
+                 return NotFound("Nenhum mangá foi encontrado");   
 
-        if (mangas is null)
-            return NotFound("Nenhum mangá foi encontrado");
-
-        return Ok(_mapper.Map<IEnumerable<MangaDTO>>(mangas));
+           return Ok(_mapper.Map<IEnumerable<MangaDTO>>(mangas));        
     }
 
     [HttpGet]

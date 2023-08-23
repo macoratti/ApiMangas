@@ -10,5 +10,5 @@ public interface IMangaRepository : IRepository<Manga>
     Task<IEnumerable<Manga>>
         LocalizaMangaComCategoriaAsync(string criterio);
 
-    IQueryable<Manga> GetMangasQueryable();
+    IQueryable<Manga> GetMangasQueryable();   
 }

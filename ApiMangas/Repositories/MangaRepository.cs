@@ -8,6 +8,7 @@ namespace ApiMangas.Repositories;
 public class MangaRepository : Repository<Manga>, IMangaRepository
 {
     public MangaRepository(AppDbContext context) : base(context) { }
+
     public async Task<IEnumerable<Manga>> GetMangasPorCategoriaAsync(int categoriaId)
     {
         var mangas = await _db.Mangas.Include(b => b.Categoria)
